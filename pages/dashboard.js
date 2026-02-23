@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Dashboard/Navbar'
 import { useStateContext } from '@/context/StateContext'
 import { useRouter } from 'next/router'
+import Tabs from '@/components/LandingPage/Tabs'
 
 
 const Dashboard = () => {
@@ -29,9 +30,14 @@ const Dashboard = () => {
       {/* <TopHeader>
         Dashboard
       </TopHeader> */}
-
+      <Tabs></Tabs>
+ 
 
     </Section>
+
+
+  
+
   )
 }
 
@@ -54,4 +60,6 @@ display: flex;
 
 
 
-export default Dashboard
+
+
+export default Dashboard;

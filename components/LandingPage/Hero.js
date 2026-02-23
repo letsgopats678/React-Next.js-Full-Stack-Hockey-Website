@@ -1,34 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
+//import React from 'react';
+//import styled from 'styled-components';
 
-const Hero = ({text}) => {
+/*const Hero = ({text}) => {
   return (
     <Section>
       <Overlay>
         <Container>
           <HeroTextColumn>
             <Header>
-              {text}
-              <Highlight>Start Here</Highlight>
-            </Header>
-            <SubheaderAndStarsColumn>
-              <SubHeader>Insert creative subheader here</SubHeader>
-              <CTAButton>Get Started</CTAButton>
-            </SubheaderAndStarsColumn>
-          </HeroTextColumn>
-        </Container>
-      </Overlay>
-    </Section>
-  );
-};
+              {text}*/
+              
+              {/*<Highlight>Start Here</Highlight>*/}
+           // </Header>
+           // <SubheaderAndStarsColumn>
+             {/*<SubHeader>Insert creative subheader here</SubHeader>*/}
+              {/*<CTAButton>Get Started</CTAButton>*/}
+         //   </SubheaderAndStarsColumn>
+        //  </HeroTextColumn>
+       // </Container>
+    //  </Overlay>
+ //   </Section>
+ // );
+//}
 
+/*
 const Section = styled.section`
-background-color: blue;
+background-color: black;
 width: 100%;
 height: 10vh;
 `;
 
 const Overlay = styled.div`
+
+
 `;
 
 const Container = styled.div`
@@ -55,4 +59,4 @@ const CTAButton = styled.button`
 
 `;
 
-export default Hero;
+export default Hero;*/

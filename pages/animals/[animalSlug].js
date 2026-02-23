@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+/*import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -79,4 +79,4 @@ const BackLink = styled(Link)`
   cursor: pointer;
 `;
 
-export default AnimalPage;
+export default AnimalPage;*/
