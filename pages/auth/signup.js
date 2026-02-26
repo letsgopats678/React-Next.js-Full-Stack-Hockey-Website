@@ -44,6 +44,7 @@ const Signup = () => {
 
   return (
     <>
+    <SIGNUP>
     <Navbar/>
     <Section>
         <Header>Signup</Header>
@@ -57,6 +58,7 @@ const Signup = () => {
         <MainButton onClick={handleSignup}>Signup</MainButton>
 
     </Section>
+    </SIGNUP>
     </>
   )
 }

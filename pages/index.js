@@ -14,10 +14,10 @@ export default function Home() {
         {/*<Navbar/>*/}
         {/*<Hero text={'TO MY CLASS'} /> */}
        {/* <Hero />*/}
-        <Tabs>
-
-          
+        <Tabs> 
+        
         </Tabs>
+
         
       
      

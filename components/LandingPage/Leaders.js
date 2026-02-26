@@ -9,20 +9,53 @@ import { useEffect, useState} from "react";
 
 const LeadersTable = () =>  {
 
-    const [leaders, setLeaders] = useState([]);
+    //const [leaders, setLeaders] = useState([]);
+    const [goalLeaders, setGoalLeaders] = useState([]);
+    
+    const [pointLeaders, setPointLeaders] = useState([]);
+
+    const [savePctLeaders, setSavePctLeaders] = useState([]);
 
     const [activeTab, setActiveTab] = useState("goals");
 
-    useEffect(() => {
-        fetch("/api/leaders")
+    /*useEffect(() => {
+        fetch("/api/goalleaders")
           .then(res => res.json())
           .then(data => {
             console.log(data);
             setLeaders(data.goals);
           })
           .catch(err => console.error(err));
+      }, []);*/
+      useEffect(() => {
+        fetch("/api/goalleaders")
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            setGoalLeaders(data.goals);
+          })
+          .catch(err => console.error(err));
       }, []);
 
+      useEffect(() => {
+        fetch("/api/pointleaders")
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            setPointLeaders(data.points);
+          })
+          .catch(err => console.error(err));
+      }, []);
+
+      useEffect(() => {
+        fetch("/api/tenderleaders")
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            setSavePctLeaders(data.savePctg);
+          })
+          .catch(err => console.error(err));
+      }, []);
 
 
     return (
@@ -65,7 +98,7 @@ const LeadersTable = () =>  {
                 </THead>
 
                 <tbody>
-                    {leaders.map((leader) => (
+                    {goalLeaders.map((leader) => (
                     <TRow key={leader.id}>
                         
 
@@ -75,7 +108,17 @@ const LeadersTable = () =>  {
 
                          
                         <Td>{leader.firstName.default} {leader.lastName.default}</Td>
-                        <Td>{leader.teamAbbrev}</Td>
+
+                    
+          
+                        <Td>
+                        <TeamLogo>
+                        {leader.teamAbbrev} <img src = {leader.teamLogo} width = "50" alt={leader.teamAbbrev}/> 
+                        </TeamLogo>
+                        </Td>
+             
+                
+
                         <Td>{leader.value}</Td>
         
                     </TRow>
@@ -88,14 +131,97 @@ const LeadersTable = () =>  {
            
         {activeTab === "points" && (
             <Points>
-                <h1>testing</h1>
+                <Head>
+                <h2 className = "text-2xl mb-4"> Point Leaders</h2>
+                </Head>
+                {/*<h1>testing</h1>*/}
+                <Table className = "w-full text-center">
+                <THead>
+                    <TRow>
+                        <Th></Th>
+                        <Th>Player</Th>
+                        <Th>team</Th>
+                        <Th>points</Th>
+                    
+                    </TRow>
+                </THead>
+
+                <tbody>
+                    {pointLeaders.map((leader) => (
+                    <TRow key={leader.id}>
+                        
+
+                        <Td>
+                            <img src = {leader.headshot} width = "90" />
+                        </Td>
+
+                         
+                        <Td>{leader.firstName.default} {leader.lastName.default}</Td>
+                        {/*<Td>{leader.teamAbbrev}</Td>*/}
+
+                        <Td>
+                        <TeamLogo>
+                        {leader.teamAbbrev} <img src = {leader.teamLogo} width = "50" alt={leader.teamAbbrev}/> 
+                        </TeamLogo>
+                        </Td>
+
+                        <Td>{leader.value}</Td>
+        
+                    </TRow>
+
+                    ))}
+                </tbody>
+
+            </Table>
             </Points>
         )}
 
         {activeTab === "goalies" && (
             <Goalies>
+                <Head>
+                <h2 className = "text-2xl mb-4"> {"Goalie Leaders (Save Percetange)"}</h2>
+                </Head>
 
-                <h1>testing2</h1>
+                <Table className = "w-full text-center">
+                <THead>
+                    <TRow>
+                        <Th></Th>
+                        <Th>Player</Th>
+                        <Th>team</Th>
+                        <Th>SV%</Th>
+                    
+                    </TRow>
+                </THead>
+
+                <tbody>
+                    {savePctLeaders.map((leader) => (
+                    <TRow key={leader.id}>
+                        
+
+                        <Td>
+                            <img src = {leader.headshot} width = "90" />
+                        </Td>
+
+                         
+                        <Td>{leader.firstName.default} {leader.lastName.default}</Td>
+                        {/*<Td>{leader.teamAbbrev}</Td>*/}
+
+                        <Td>
+                        <TeamLogo>
+                        {leader.teamAbbrev} <img src = {leader.teamLogo} width = "50" alt={leader.teamAbbrev}/> 
+                        </TeamLogo>
+                        </Td>
+
+                        <Td>{leader.value.toFixed(3)}</Td>
+        
+                    </TRow>
+
+                    ))}
+                </tbody>
+
+            </Table>
+
+           
             </Goalies>
         )}
 
@@ -108,6 +234,37 @@ const LeadersTable = () =>  {
 
 };
 
+/*const TeamLogo = styled.td`
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; 
+
+`;
+const TeamLine = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+  img {
+    width: 26px;
+    height: auto;
+    display: block; 
+  }
+
+  
+`;*/
+
+const TeamLogo = styled.div`
+    img {
+        width: 50px;
+        height: auto;
+        position: relative;
+        top: 9px;   /* move logo down 2px */
+    }
+
+`;
+
 
 const Goals = styled.section`
 font-family: 'Arial', sans-serif;
@@ -119,6 +276,7 @@ th, td{
 `;
 
 const Table = styled.table`
+
   width: 80%;
   border-collapse: collapse;
   

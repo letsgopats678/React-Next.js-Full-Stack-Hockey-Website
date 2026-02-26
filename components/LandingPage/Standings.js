@@ -64,7 +64,11 @@ const StandingsTable = () => {
         {activeTab === "league" && (
           <>
           
-          <SectionTitle>League Standings </SectionTitle>
+          <SectionTitle>
+            
+            <div> League Standings </div>
+            
+            </SectionTitle>
 
 
             <CardTable>
@@ -72,12 +76,13 @@ const StandingsTable = () => {
                 
 
 
-                
+        
 
             <Thead>
                 <tr className = "border-b border-gray-700 text-gray-400">
                     <Th></Th>
                     <Th className = "p-4"> Team </Th>
+                    <Th className = "p-4">GP</Th>
                     <Th className = "p-4"> W </Th>
                     <Th className = "p-4"> L </Th>
                     <Th className = "p-4"> OTL </Th>
@@ -96,6 +101,7 @@ const StandingsTable = () => {
 
                     {/*<td> {team.teamCommonName.default}</td>*/}
                     <Td> {team.teamName.default}</Td>
+                    <Td>{team.wins+ team.losses + team.otLosses}</Td>
                     <Td>{team.wins}</Td>
                     <Td>{team.losses}</Td>
                     <Td>{team.otLosses}</Td>
@@ -288,6 +294,7 @@ const SectionTitle = styled.h2`
   font-size: 1.6rem;
   font-weight: 600;
   margin: 30px 0 20px 0;
+  padding: 30px;
 `;
 
 const StatTab = styled.div`

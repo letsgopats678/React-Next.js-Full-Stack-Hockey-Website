@@ -1,7 +1,7 @@
 import { auth } from "./Firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
   
-/*export async function register(email, password) {
+export async function register(email, password) {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
     return userCred.user;
   }
@@ -10,5 +10,5 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignIn
 export async function isEmailInUse(email) {
     const methods = await fetchSignInMethodsForEmail(auth, email);
     return methods.length > 0;
-  }*/
+  }
 

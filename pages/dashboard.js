@@ -5,6 +5,7 @@ import Navbar from '@/components/Dashboard/Navbar'
 import { useStateContext } from '@/context/StateContext'
 import { useRouter } from 'next/router'
 import Tabs from '@/components/LandingPage/Tabs'
+import Signup from './auth/signup'
 
 
 const Dashboard = () => {
@@ -26,11 +27,18 @@ const Dashboard = () => {
 
 
   return (
+    
     <Section>
       {/* <TopHeader>
         Dashboard
       </TopHeader> */}
-      <Tabs></Tabs>
+     
+      <Tabs>
+
+      
+      </Tabs>
+
+        <SIGNUP></SIGNUP>
  
 
     </Section>
