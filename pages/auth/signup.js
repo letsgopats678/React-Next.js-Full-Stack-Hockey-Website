@@ -48,7 +48,7 @@ const Signup = () => {
     {/*<Navbar/>*/}
     <Section>
       <Card>
-        <Header>Signup</Header>
+        <Header>Sign Up</Header>
         <InputTitle>Email</InputTitle>
         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
         <InputTitle>Password</InputTitle>

@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from "react";
-//import { mockStandings } from "@/components/LandingPage/mockStandings";
+
 import StandingsTable from "./Standings";
 
 import styled from "styled-components";
 import LeadersTable from "./Leaders";
 
-import {mockLeaders} from "./mockLeaders";
 import Games from "./Games";
-import {mockGames} from "./mockGames";
 import Scoreboard from "./Scoreboard";
 
 import { useRouter } from "next/router"
@@ -19,7 +17,6 @@ import { auth } from "@/backend/Firebase"
 
 const Tabs = () => {
     const [activeTab, setActiveTab] = useState("standings")
-    console.log("mockStandings in Tabs:", mockLeaders);
 
     const router = useRouter()
     const { setUser } = useStateContext()
@@ -55,8 +52,7 @@ const Tabs = () => {
                 onClick={() => setActiveTab("games")}
                 >Games
                 </NavSpan>
-                
-                {/*<span>Upcoming</span>*/}
+
                 <NavSpan
                 className={activeTab === "standings" ? "active" : ""}
                 onClick={() => setActiveTab("standings")}
