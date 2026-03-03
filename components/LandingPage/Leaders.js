@@ -329,7 +329,24 @@ th, td{
 `;
 
 const StatTab = styled.div`
-display: flex;
+
+padding-top: 20px;
+padding-left: 20px;
+button {
+    padding: 4px 10px;
+    font-size: 20px !important;
+    border-radius: 10px;
+    border: 1px solid #374151;
+    background: transparent;
+    color: #d1d5db;
+    cursor: pointer;
+  }
+
+ 
+    
+`;
+
+/**display: flex;
 gap: 10px;
 margin-top: 10px;
 
@@ -341,12 +358,7 @@ button {
   background: transparent;
   color: #d1d5db;
   cursor: pointer;
-}
-
-
- 
-    
-`;
+} */
 const Head = styled.h2`
     padding: 30px;
 

@@ -45,6 +45,30 @@ const StandingsTable = () => {
       });
 
 
+      const groupedByConference = teams.reduce((acc, team) => {
+        const conference = team.conferenceName;
+    
+        if (!acc[conference]) {
+            acc[conference] = [];
+        }
+    
+        acc[conference].push(team);
+    
+        return acc;
+    }, {});
+
+      Object.keys(groupedByConference).forEach(conf => {
+        groupedByConference[conf].sort((a, b) => b.points - a.points);
+    });
+
+    const easternTeams = teams
+      .filter(team => team.conferenceName === "Eastern")
+      .sort((a, b) => b.points - a.points);
+
+    const westernTeams = teams
+      .filter(team => team.conferenceName === "Western")
+      .sort((a, b) => b.points - a.points);
+
     return(
 
         
@@ -140,7 +164,7 @@ const StandingsTable = () => {
                     </Thead>
                     
 
-                    {divisionTeams.map((team) => (
+                    {divisionTeams.map((team, index) => (
                         <tr key={team.teamAbbrev.default}>
                             <Td>
                             <img src={team.teamLogo} width="70" />
@@ -164,7 +188,83 @@ const StandingsTable = () => {
         {activeTab === "conference" && (
 
 
-            <h1>testing2</h1>
+     
+
+    <ConferenceGrid>
+
+    {/* Eastern Conference */}
+    <ConferenceCard>
+      <ConferenceTitle>Eastern Conference</ConferenceTitle>
+
+      <CardTable>
+        <Thead>
+          <tr className="border-b border-gray-700 text-gray-400">
+            <Th></Th>
+            <Th></Th>
+            <Th>Team</Th>
+            <Th>W</Th>
+            <Th>L</Th>
+            <Th>OTL</Th>
+            <Th>Pts</Th>
+          </tr>
+        </Thead>
+
+        {easternTeams.map((team, index) => (
+          <tr key={team.teamAbbrev.default}>
+            <Td>{index + 1}</Td>
+            <Td>
+              <img src={team.teamLogo} width="50" />
+            </Td>
+            <Td>{team.teamName.default}</Td>
+            <Td>{team.wins}</Td>
+            <Td>{team.losses}</Td>
+            <Td>{team.otLosses}</Td>
+            <Td>{team.points}</Td>
+          </tr>
+        ))}
+      </CardTable>
+    </ConferenceCard>
+
+
+    {/* Western Conference */}
+    <ConferenceCard>
+      <ConferenceTitle>Western Conference</ConferenceTitle>
+
+      <CardTable>
+        <Thead>
+          <tr className="border-b border-gray-700 text-gray-400">
+            <Th></Th>
+            <Th></Th>
+            <Th>Team</Th>
+            <Th>W</Th>
+            <Th>L</Th>
+            <Th>OTL</Th>
+            <Th>Pts</Th>
+          </tr>
+        </Thead>
+
+        {westernTeams.map((team, index) => (
+          <tr key={team.teamAbbrev.default}>
+            <Td>{index + 1}</Td>
+            <Td>
+              <img src={team.teamLogo} width="50" />
+            </Td>
+            <Td>{team.teamName.default}</Td>
+            <Td>{team.wins}</Td>
+            <Td>{team.losses}</Td>
+            <Td>{team.otLosses}</Td>
+            <Td>{team.points}</Td>
+          </tr>
+        ))}
+      </CardTable>
+    </ConferenceCard>
+
+  </ConferenceGrid>
+
+            
+
+
+            
              
    
 
@@ -178,6 +278,32 @@ const StandingsTable = () => {
 
     );
 };
+
+const ConferenceGrid = styled.div`
+width: 100%;
+border-collapse: collapse;
+max-width: 1100px;
+
+margin: 40px auto;
+`; 
+const ConferenceCard = styled.div`
+background: black;
+border-radius: 16px;
+padding: 24px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+transition: transform 0.2s ease;
+
+&:hover {
+  transform: translateY(-6px);
+}
+`;
+
+const ConferenceTitle = styled.h2`
+font-size: 1.4rem;
+font-weight: 600;
+margin-bottom: 16px;
+color: white;
+`;
 
 const Stand = styled.section`
 font-family: 'Arial', sans-serif;
@@ -242,7 +368,7 @@ margin: 40px auto;
 `;
 
 const DivisionCard = styled.div`
-  background: #111;
+  background: black;
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
@@ -298,10 +424,11 @@ const SectionTitle = styled.h2`
 `;
 
 const StatTab = styled.div`
+padding-left: 20px;
 button {
-    padding: 4px 10px !important;
+    padding: 4px 10px;
     font-size: 20px !important;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid #374151;
     background: transparent;
     color: #d1d5db;

@@ -12,3 +12,5 @@ import { database } from "./Firebase"
     await setDoc(doc(database, collectionName, docId), data);
     return docId;
   }*/
+
+

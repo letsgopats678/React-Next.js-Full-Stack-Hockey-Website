@@ -1,25 +1,35 @@
 import "leaflet/dist/leaflet.css";
 
-import {TileLayer, Marker, Popup, MapContainer} from "react-leaflet";
-import { useEffect, useState } from "react";
+/////import {TileLayer, Marker, Popup, MapContainer} from "react-leaflet";
+///import { useEffect, useState } from "react";
 
-import L from "leaflet";
+"use client";
 
-
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-});
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 
+export default function VenueMap({ position }) {
+  return (
+    <MapContainer
+      center={position}
+      zoom={15}
+      style={{ height: "400px", width: "100%", borderRadius: "12px" }}
+    >
+      <TileLayer
+        attribution='&copy; OpenStreetMap contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={position}>
+        <Popup>Arena Location</Popup>
+      </Marker>
+    </MapContainer>
+  );
+}
 
-const VenueMap = ({venue}) => {
+
+
+
+/*const VenueMap = ({venue}) => {
     const [position, setPosition] = useState(null);
     useEffect(()=>{
         if(!venue){
@@ -51,10 +61,10 @@ const VenueMap = ({venue}) => {
             zoom = {15}
             style = {{height: "300px", width: "100%", borderRadius: "12px"}}
         >
-            {/*<TileLayer
+            /*<TileLayer
                 attribution="&copy; OpenStreetMap contributors"
                 url = "https://tile.openstretmap.org/{z}/{x}{y}.png"
-    /> */}
+    /> 
             <TileLayer
                 attribution='&copy; OpenStreetMap contributors &copy; CARTO'
                 url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
@@ -73,4 +83,4 @@ const VenueMap = ({venue}) => {
 
 
 
-export default VenueMap;
+export default VenueMap;*/

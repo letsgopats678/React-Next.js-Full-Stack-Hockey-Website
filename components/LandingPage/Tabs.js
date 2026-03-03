@@ -11,13 +11,36 @@ import Games from "./Games";
 import {mockGames} from "./mockGames";
 import Scoreboard from "./Scoreboard";
 
+import { useRouter } from "next/router"
+import { useStateContext } from "@/context/StateContext"
+
+import { signOut } from "firebase/auth"
+import { auth } from "@/backend/Firebase"
 
 const Tabs = () => {
     const [activeTab, setActiveTab] = useState("standings")
     console.log("mockStandings in Tabs:", mockLeaders);
+
+    const router = useRouter()
+    const { setUser } = useStateContext()
+
+    async function handleLogout() {
+        try {
+          await signOut(auth)     // direct Firebase logout
+          setUser(null)
+          router.push("/auth/login")
+        } catch (err) {
+          console.log("Logout error:", err)
+        }
+      }
     return(
         <MainTabs>
             <Header>
+            <img
+            src="/logos/hockey-stick.jpg"
+            alt="Hockey Stick"
+            width= "100px"
+            />
             <h1>Hockey Dashboard</h1>
             <p>NHL Stats, Teams, Standings, and Live and Upcoming Score Dashboard powered by the NHL API</p>
             <p>This project is done in React and Next.js and stored on Google Firebase. This is for Educational Purposes only.</p>
@@ -42,6 +65,10 @@ const Tabs = () => {
                 className={activeTab === "leaders" ? "active" : ""}
                 onClick={() => setActiveTab("leaders")}
                 >Leaders</NavSpan>
+
+                <LogoutButton onClick={handleLogout}>
+                    Sign Out
+                </LogoutButton>
             </NavLinks>
             </TopNav>
 
@@ -109,10 +136,14 @@ const Header = styled.div`
     letter-spacing: 1px;
     text-transform: uppercase;
 
+    padding-top: 20px;
+
+    padding-left: 50px;
+
 
     
     h1 {
-        font-size: 30px;
+        font-size: 20px;
         font-weight: 700;
         letter-spacing: -0.5px;
         margin: 0;
@@ -221,9 +252,26 @@ button.active{
     color: white;
     box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
-
-
 `;
+
+const LogoutButton = styled.button`
+  padding: 8px 18px;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+
+  &:hover {
+    background: #1a1a1a;
+    border-color: #4ea1ff;
+  }
+`
 
 
 export default Tabs;

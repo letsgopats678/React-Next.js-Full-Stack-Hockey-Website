@@ -21,7 +21,7 @@ const Dashboard = () => {
     }else{
 
     }
-  }, user)
+  }, [user])
 
 
 
@@ -38,7 +38,7 @@ const Dashboard = () => {
       
       </Tabs>
 
-        <SIGNUP></SIGNUP>
+        
  
 
     </Section>

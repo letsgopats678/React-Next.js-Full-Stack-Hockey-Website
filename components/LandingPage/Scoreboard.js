@@ -7,6 +7,9 @@ import styled from 'styled-components';
 
 
 
+import Link from "next/link";
+
+
 
 const Scoreboard = () => {
     const [scores, setScores] = useState([]);
@@ -133,10 +136,10 @@ const Scoreboard = () => {
                 />
                 
                 <Score style={{ fontWeight: awayWin ? "800" : "400" }}>
-                  {game.awayTeam.score ?? "-"}
+                  {game.awayTeam.score ?? " "}
                 </Score>
               </LogoScore>
-              {game.awayTeam.record ?? ""}
+   
           
             </TeamSection>
            
@@ -148,7 +151,7 @@ const Scoreboard = () => {
 
               <LogoScore>
               <Score style={{ fontWeight: homeWin ? "800" : "400" }}>
-                  {game.homeTeam.score ?? "-"}
+                  {game.homeTeam.score ?? " "}
                 </Score>
                 <img
                   src={game.homeTeam.logo}
@@ -157,13 +160,39 @@ const Scoreboard = () => {
                 />
                
               </LogoScore>
-              {game.homeTeam.record ?? ""}
+       
             </TeamSection>
             </TeamsRow>
 
             <GameMetaData>
               {/*<Venue>{venue}</Venue>*/}
-              <Venue>{venue}</Venue>
+              {/*<Venue>
+              <VenueLink
+                href={`https://www.openstreetmap.org/search?query=${encodeURIComponent(venue)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {venue}
+              </VenueLink>
+              </Venue>
+
+              <Venue>
+                <a
+                  href="https://www.openstreetmap.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "red", fontSize: "18px" }}
+                >
+                  TEST LINK
+                </a>
+          </Venue>*/}
+          <a
+            href={`https://www.openstreetmap.org/search?query=${encodeURIComponent(venue || "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#4ea1ff", textDecoration: "underline", cursor: "pointer" }}
+          >{venue}</a>
+
               <Networks>{networks}</Networks>
             </GameMetaData>
 
@@ -202,6 +231,17 @@ display: flex;
 `;
 const Venue = styled.div`
 `;
+
+/*const VenueLink = styled.span`
+  cursor: pointer;
+  color: #4ea1ff;
+  transition: 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 1;
+  }
+`;*/
 
 const Networks = styled.div`
 `;
@@ -266,6 +306,7 @@ const Score = styled.div`
 `;
 
 const AtSymbol = styled.div`
+  padding-right: 25px;
   font-size: 20px;
   opacity: 0.7;
 `;
@@ -301,6 +342,8 @@ const Title = styled.h2`
   font-size: 28px;
   margin-bottom: 24px;
 `;
+
+
 
 
 export default Scoreboard;

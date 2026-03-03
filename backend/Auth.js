@@ -12,3 +12,8 @@ export async function isEmailInUse(email) {
     return methods.length > 0;
   }
 
+  //export async function loginUser(email, password) {
+  export async function login(email, password) {
+    const userCred = await signInWithEmailAndPassword(auth, email, password);
+    return userCred.user;
+  }

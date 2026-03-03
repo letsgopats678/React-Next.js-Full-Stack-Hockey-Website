@@ -35,7 +35,7 @@ const Signup = () => {
     
     try{
         await register(email, password, setUser)
-        router.push('/dashboard')
+        router.push('/auth/login')
     }catch(err){
         console.log('Error Signing Up', err)
     }
@@ -44,9 +44,10 @@ const Signup = () => {
 
   return (
     <>
-    <SIGNUP>
-    <Navbar/>
+  
+    {/*<Navbar/>*/}
     <Section>
+      <Card>
         <Header>Signup</Header>
         <InputTitle>Email</InputTitle>
         <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
@@ -56,32 +57,80 @@ const Signup = () => {
         <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
 
         <MainButton onClick={handleSignup}>Signup</MainButton>
+        </Card>
 
     </Section>
-    </SIGNUP>
+
     </>
   )
 }
 
+
+
 const Section = styled.section`
   display: flex;
+  background: #000;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Card = styled.div`
+  background: #111;
+  padding: 50px 40px;
+  border-radius: 16px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #222;
+  box-shadow: 0 0 40px rgba(0, 119, 255, 0.15);
 `;
 
 const Header = styled.h1`
   font-size: 24px; /* Adjusted for better scalability */
+  color: white;
+  font-family: 'arial', sans-serif;
+  text-align: center;
+  background: #111;
 `;
 
 const Input = styled.input`
   font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: white;
+
+  &:focus {
+    outline: none;
+    border-color: #1a73e8;
+  }
 
 `;
 
 const InputTitle = styled.label` /* Changed to label for semantics */
   font-size: 14px;
+  background: #111;
+  color: #gray;
+  font-family: 'arial', sans-serif;
 `;
 
 const MainButton = styled.button`
   font-size: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  background: #1a73e8;
+  color: white;
+  transition: 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
 
 `;
 
@@ -95,4 +144,4 @@ const UserAgreementSpan = styled(Link)`
 `;
 
 
-export default Signup
+export default Signup;
