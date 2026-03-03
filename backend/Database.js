@@ -6,7 +6,7 @@ import { database } from "./Firebase"
     return docRef.id;
   }
 
-//Usage: const id = await createDocument("users", { name: "Bob", age: 22 });
+const id = await createDocument("users", { name: "Bob", age: 22 });
 
   export async function setDocument(collectionName, docId, data) {
     await setDoc(doc(database, collectionName, docId), data);
@@ -14,3 +14,4 @@ import { database } from "./Firebase"
   }*/
 
 
+  

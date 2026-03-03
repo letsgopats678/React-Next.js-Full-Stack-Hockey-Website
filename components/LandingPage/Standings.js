@@ -6,6 +6,7 @@ import { useEffect, useState} from "react";
 
 
 
+
 //const StandingsTable = ({teams = []}) => {
 const StandingsTable = () => {
 
@@ -13,6 +14,7 @@ const StandingsTable = () => {
 
     const [activeTab, setActiveTab] = useState("league");
 
+    
     
 
     useEffect(() => {
